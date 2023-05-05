@@ -1,0 +1,121 @@
+---
+title: "Laboratorio 1"
+author: "Javier de San Jose Recinos"
+date: "2023-05-05"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+## Parte 1
+
+1) ¿Cómo generaría un arreglo aleatorio de 250 elementos con los
+colores primarios?
+
+```{r}
+colores_primarios <- c("rojo", "azul", "amarillo")
+vector_aleatorio <- sample(1:3, 250, replace = TRUE)
+arreglo_colores_primarios <- colores_primarios[vector_aleatorio]
+arreglo_colores_primarios
+
+
+```
+
+2) Dado un arreglo de 120000 elementos de números enteros entre
+40 y 70, ¿Cómo haría para obtener la desviación estándar de
+aquellos números que son mayores a 55 y menores a 64?
+
+You can also embed plots, for example:
+
+```{r}
+arreglo <- sample(40:70, 120000, replace = TRUE)
+sub_arreglo <- arreglo[arreglo > 55 & arreglo < 64]
+desv_est <- sd(sub_arreglo)
+desv_est
+```
+3) Suponga que se almacena en una variable un arreglo con todos
+los números de carnet de los estudiantes del Instituto de
+Investigación de Operaciones de la universidad en forma de
+string, los carnets tiene al inicio dos caracteres que
+identifican el año en el que la persona entró a la universidad
+por ejemplo: 19004528 hacer referencia a una persona que
+ingreso en el año 2019, 06009878 hace referencia a una persona
+que ingreso que el año 2006, ¿Cómo haría para contar la cantidad
+de alumnos por año?
+
+
+
+```{r}
+numeros_carnet <- c("19004528", "19004529", "06009878", "06009879","21225130", "22000123", "22000124", "22000125", "22000126")
+años_ingreso <- substr(numeros_carnet, 1, 2)
+cantidad_por_anio <- table(años_ingreso)
+cantidad_por_anio
+
+
+```
+4) Define el vector y = (1, 3, 5, 7) utilizando la función c().
+¿Cómo lo harías con la función seq()?
+
+```{r}
+s <- seq(from = 1, to = 7, by = 2)
+s
+```
+5) Si b <- list(a=1:10, c="Hola", d="XX"), escriba una expresión
+en R que devuelva todos los elementos de la lista excepto los
+elementos 4,6,7,8 del vector a.
+
+```{r}
+b <- list(a=1:10, c="Hola", d="XX")
+b$a <- b$a[-c(4,6,7,8)]
+b
+```
+6) Dado los siguientes vectores, muestre el código en R necesario
+para declarar y calcular el promedio, deviación estándar,
+mediana, moda y sumatoria total para los siguientes vectores:
+a.x=(8,7,6,5)
+b. y = (3,3, 3, 3, 3, 3, 3, 3, 2, 2)
+c. z = (1, 1.75, 2.5, 3.25, 4)
+
+```{r}
+x <- c(8, 7, 6, 5)
+y <- c(3,3, 3, 3, 3, 3, 3, 3, 2, 2) 
+z <- c (1, 1.75, 2.5, 3.25, 4)
+
+# Promedio
+mean(x)
+mean(y)
+mean(z)
+
+# Desviación estándar
+sd(x)
+sd(y)
+sd(z)
+
+# Mediana
+median(x)
+median(y)
+median(z)
+
+# Moda (utilizando la función 'mfv' definida previamente)
+mfv(x)
+mfv(y)
+mfv(z)
+# Sumatoria total
+sum(x)
+sum(y)
+sum(z)
+
+```
+
+7) Sabemos que para sumar vectores estos deben tener la misma
+longitud. Sin embargo R trabaja de manera distinta. Defina los
+vectores x = (1, 2, 3, 4, 5, 6), y = (7, 8), z = (9, 10, 11,
+12). Calcula:
+a. x + x
+b. x + y.
+c. Responda ¿Qué ha hecho R?
+
+```{r}
+
+```
+
