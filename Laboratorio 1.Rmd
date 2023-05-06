@@ -3,8 +3,8 @@ title: "Laboratorio 1"
 author: "Javier de San Jose Recinos"
 date: "2023-05-05"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ## Parte 1
@@ -97,9 +97,14 @@ median(y)
 median(z)
 
 # Moda (utilizando la función 'mfv' definida previamente)
-mfv(x)
-mfv(y)
-mfv(z)
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+getmode(x)
+getmode(y)
+getmode(z)
+
 # Sumatoria total
 sum(x)
 sum(y)
@@ -116,6 +121,96 @@ b. x + y.
 c. Responda ¿Qué ha hecho R?
 
 ```{r}
+x <- c(1, 2, 3, 4, 5, 6)
+y <- c(7, 8)
+z <- c(9, 10, 11, 12)
+
+x + x
+```
+
+```{r}
+x+y
+```
+En la operación x + y, R recicla los elementos de y para que tenga la misma longitud que x, es decir, convierte y en (7, 8, 7, 8, 7, 8) y luego suma los elementos correspondientes de x e y. Esto produce el vector resultante (8, 10, 10, 12, 12, 14).
+
+
+
+8) Dada la variable string <- "Hola Mundo", escriba una instrucción
+en R que devuelva la siguiente salida:
+
+
+```{r}
+palabra <- "Hola Mundo"
+palabras <-  strsplit(palabra," ")
+palabras
+```
+
+## Segunda Parte
+
+Carga de datos 
+
+```{r include=FALSE}
+load("data.Rdata")
+```
+```{r}
+class(info_estudiantes)
+```
+
+¿Cuantos elementos tiene info_estudiantes?
+
+```{r}
+length(info_estudiantes)
+
+```
+¿Qué representa cada uno de los elementos de info_estudiantes?
+
+```{r}
+str(info_estudiantes)
+```
+¿Cuál es la media de los estudiantes ingresados en el año 2019?
+
+```{r}
+estudiantes_2019 <- substr(info_estudiantes$carnet, 1, 2) == "19"
+media_2019 <- mean(info_estudiantes$promedio[estudiantes_2019])
+media_2019
+
+```
+
+
+Cuál es la suma de desviación estándar de los estudiantes que
+ingresaron en el año 2016 y 2018?
+
+```{r}
+estudiantes_16y18 <- substr(info_estudiantes$carnet, 1, 2) %in% c("16", "18")
+desv_16y18 <- sum(sd(info_estudiantes$promedio[estudiantes_16y18]))
+desv_16y18
+
+ 
+
+```
+
+
+¿Cuál es el mínimo de notas de aquellos estudiantes donde su
+carnet termina con los números 45 a 48?
+
+```{r}
+estudiantes_45_48 <- grepl("45$|46$|47$|48$", info_estudiantes$carnet)
+min_notas_45_48 <- min(info_estudiantes$promedio[estudiantes_45_48])
+min_notas_45_48
+
+
+```
+
+¿Cuál es la probabilidad de que un estudiante tipo A tenga una
+nota mayor a 85?
+
+```{r}
+
+estudiantes_tipoA <- subset(info_estudiantes, tipo == "A")
+n_estudiantes_tipoA_notaAlta <- sum(estudiantes_tipoA$promedio > 85)
+probabilidad_tipoA_notaAlta <- n_estudiantes_tipoA_notaAlta / nrow(estudiantes_tipoA)
+probabilidad_tipoA_notaAlta
+
 
 ```
 
