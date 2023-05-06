@@ -205,12 +205,27 @@ min_notas_45_48
 nota mayor a 85?
 
 ```{r}
-
-estudiantes_tipoA <- subset(info_estudiantes, tipo == "A")
-n_estudiantes_tipoA_notaAlta <- sum(estudiantes_tipoA$promedio > 85)
-probabilidad_tipoA_notaAlta <- n_estudiantes_tipoA_notaAlta / nrow(estudiantes_tipoA)
+estudiantes_tipoA <- info_estudiantes$tipo == "A"
+estudiante_mayor85 <- sum(info_estudiantes$promedio[estudiantes_tipoA] > 85)
+probabilidad_tipoA_notaAlta <- estudiante_mayor85 / sum(estudiantes_tipoA)
 probabilidad_tipoA_notaAlta
 
+
+
+```
+
+
+¿Cuál es la probabilidad de que un estudiante tipo C haya
+ingresado en el año 2017 o 2019?
+
+
+```{r}
+estudiantes_tipoC <- info_estudiantes$tipo == "C"
+estudiantes_2017_2019 <- substr(info_estudiantes$carnet, 1, 2) %in% c("17", "19")
+estudiantes_tipoC_2017_2019 <- estudiantes_tipoC & estudiantes_2017_2019
+total_estudiantes_tipoC_2017_2019 <- sum(estudiantes_tipoC_2017_2019)
+probabilidad_tipoC_2017_2019 <- total_estudiantes_tipoC_2017_2019 / sum(estudiantes_tipoC)
+probabilidad_tipoC_2017_2019
 
 ```
 
